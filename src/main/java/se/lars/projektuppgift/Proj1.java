@@ -19,10 +19,11 @@ public class Proj1 {
                 if (nrPlayers > 1 && nrPlayers <= 10) {
                     hasIntInput = true;
                 }
-               scanner.nextLine();
-            } else {
-        //        scanner.nextLine();
+                else {
+                    System.out.println("Orimligt spelarantal - försök igen!");
+                }
             }
+            scanner.nextLine();
         }
 
         Player[] players = new Player[nrPlayers];
@@ -38,51 +39,48 @@ public class Proj1 {
         // Namnge deltagarna
 
         for (int i = 0; i < nrPlayers; i++) {
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
-            }
             System.out.println("Ge namnet på spelare nr" + (i + 1) + ":");
             String namn = scanner.nextLine();
             players[i].setName(namn);
         }
 
-
-        // scanner.nextLine();
+        // Spelet kan börja
 
         boolean mer = true;
-        int[] kalle;
-//        int[] res = new int[players.length];
         int[] res = new int[nrPlayers];
         while (mer) {
             int resMax = 0;
-
             for (int i = 0; i < nrPlayers; i++) {
                 res[i] = Player.geText(players[i], scanner);
                 if (res[i] > resMax) {
                     resMax = res[i];
                 }
             }
-            System.out.println("         Bästa resultat " + resMax);
             System.out.println("==============================================================");
+            System.out.print("         Bästa resultat " + resMax + "   |   ");
             System.out.print("Grattis");
             for (int i = 0; i < nrPlayers; i++) {
                 if (res[i] == resMax) {
                     System.out.print(" " + players[i].getName());
                 }
             }
-            System.out.println("");
-            System.out.println("==============================================================");
-
-            System.out.println("");
-            System.out.print("Vill du köra mer? tryck 1");
-
-            if (scanner.nextInt() != 1) {
-                mer = false;
+            System.out.println("\n==============================================================");
+            boolean hasNo01 = true;
+            while (hasNo01) {
+                System.out.println("\nVill du: köra mer?/(tryck 1) | Lägga ner?/(tryck 0):");
+                if (scanner.hasNextInt()) {
+                    int intRead = scanner.nextInt();
+                    if (intRead == 0) {
+                        mer = false;
+                        hasNo01 = false;
+                    } else if (intRead == 1) {
+                        hasNo01 = false;
+                    }
+                }
                 scanner.nextLine();
             }
         }
     }
-
-
 }
+
 

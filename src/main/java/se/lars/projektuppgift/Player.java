@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-    private String name = "";
+    private String name;
     private int trow1, trow2;
 
     public void setName(String name) {
@@ -26,9 +26,6 @@ public class Player {
     }
 
     public static int geText(@org.jetbrains.annotations.NotNull Player player, @NotNull Scanner scanner) {
- /*       if (scanner.hasNext()) {
-            scanner.nextLine();
-        } */
         System.out.print("Tryck enter när du är redo att slå " + player.getName());
         scanner.nextLine();
         int slag1 = player.throwDice();
