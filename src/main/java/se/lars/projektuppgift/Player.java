@@ -1,9 +1,12 @@
 package se.lars.projektuppgift;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Random;
+import java.util.Scanner;
 
 public class Player {
-    private String name;
+    private String name = "";
     private int trow1, trow2;
 
     public void setName(String name) {
@@ -20,6 +23,19 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public static int geText(@org.jetbrains.annotations.NotNull Player player, @NotNull Scanner scanner) {
+ /*       if (scanner.hasNext()) {
+            scanner.nextLine();
+        } */
+        System.out.print("Tryck enter när du är redo att slå " + player.getName());
+        scanner.nextLine();
+        int slag1 = player.throwDice();
+        player.setTrow1(slag1);
+        int slag2 = player.throwDice();
+        player.setTrow2(slag2);
+        return player.presenteraResultat();
     }
 
     public int throwDice() {
